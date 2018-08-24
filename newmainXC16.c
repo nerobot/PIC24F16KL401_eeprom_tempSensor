@@ -8,9 +8,22 @@
 #include "config.h"
 #include "PIC24F16KL401.h"
 #include "xc.h"
+#include <libpic30.h>
 
 #include "i2c1.h"
 #include "mcp9808.h"
+
+// Data structure that will contain all data being sent via the RFM69 RF module.
+// Serial gateway needs updating whenever this gets updated.
+struct dataStruct{
+    uint16_t    temp;
+    uint8_t     hour;
+    uint8_t     minute;
+    uint8_t     second;
+    uint8_t     day;
+    uint8_t     month;
+    uint8_t     year;
+} data;
 
 void initPorts(){
     TRISA = 0x0000;
@@ -56,7 +69,7 @@ void initInterrupts(){
 void init(){
     initPorts();
     initPMD();
-    initInterrupts();
+    initInterrupts();        
 }
 
 enum selector{
@@ -71,33 +84,41 @@ uint8_t selector(){
 }
 
 int main(void) {
+    // variables
+    uint8_t sel = 0;
     
     // init
     init();
     
     // check selector
-    switch (selector()){
+    /*switch (selector()){
         case sensing:
             break;
         case sending:
             break;
         default:
             break;
-    }   
+    } */
+    sel = selector();
     
     // if selector == sense
+    if (sel == sensing){                
     
-        // once a minute
-    
-            // wake up
-    
-            // read the current time
-    
-            // read the current temperature
-    
-            // store the data in the eeprom
-    
-            // go back to sleep
+        // wake up - nothing to be done.
+
+        // read the current time                        
+
+        // read the current temperature
+        _SSP1MD = 0;
+        i2cInit();
+        while(!initMCP()){}
+        __delay_ms(1000);
+        data.temp = readTemp();
+
+        // store the data in the eeprom
+
+        // sleep for one minute until RTC interrupt (or just delay for now).
+    }
     
     // else if selector == send data
     
