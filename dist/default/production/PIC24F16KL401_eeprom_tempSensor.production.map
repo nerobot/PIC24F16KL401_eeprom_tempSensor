@@ -81,9 +81,9 @@ xc16-ld 1.35 (A)
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xce           0x135  (309)
-.text                        0x2ce                0x5e            0x8d  (141)
+.text                        0x2ce                0x72            0xab  (171)
 
-                 Total "program" memory used (bytes):          0x1c2  (450) 2%
+                 Total "program" memory used (bytes):          0x1e0  (480) 2%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x400]
@@ -113,9 +113,10 @@ External Symbols in Program Memory (by address):
                   0x0002c8                  __DefaultInterrupt
                   0x0002ce                  _initPorts
                   0x0002e6                  _initPMD
-                  0x000304                  _initInterrupts
-                  0x000316                  _init
-                  0x000322                  _main
+                  0x000302                  _initInterrupts
+                  0x000314                  _init
+                  0x000320                  _selector
+                  0x000328                  _main
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
 
@@ -128,11 +129,12 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000316                  _init
-                  0x000304                  _initInterrupts
+                  0x000314                  _init
+                  0x000302                  _initInterrupts
                   0x0002e6                  _initPMD
                   0x0002ce                  _initPorts
-                  0x000322                  _main
+                  0x000328                  _main
+                  0x000320                  _selector
 
 Memory Configuration
 
@@ -208,12 +210,12 @@ usercode
 
 __FBS             0xf80000          0x2
  *(__FBS.sec*)
- __FBS.sec        0xf80000          0x2 /CW/_FBS°ãž
+ __FBS.sec        0xf80000          0x2 /CW/_FBSÀ¦
                   0xf80000                  __FBS.sec
 
 __FGS             0xf80004          0x2
  *(__FGS.sec*)
- __FGS.sec        0xf80004          0x2 /CW/_FGS¨Óž
+ __FGS.sec        0xf80004          0x2 /CW/_FGS¸ø¥
                   0xf80004                  __FGS.sec
 
 __FOSCSEL
@@ -234,22 +236,22 @@ __FICD
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xd45
+.debug_info       0x000000        0xcb1
  *(.debug_info)
- .debug_info      0x000000        0xd45 build/default/production/newmainXC16.o
+ .debug_info      0x000000        0xcb1 build/default/production/newmainXC16.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x10f
+.debug_abbrev     0x000000        0x13c
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x10f build/default/production/newmainXC16.o
+ .debug_abbrev    0x000000        0x13c build/default/production/newmainXC16.o
 
-.debug_line       0x000000        0x10f
+.debug_line       0x000000        0x114
  *(.debug_line)
- .debug_line      0x000000        0x10f build/default/production/newmainXC16.o
+ .debug_line      0x000000        0x114 build/default/production/newmainXC16.o
 
-.debug_frame      0x000000         0xa0
+.debug_frame      0x000000         0xbc
  *(.debug_frame)
- .debug_frame     0x000000         0xa0 build/default/production/newmainXC16.o
+ .debug_frame     0x000000         0xbc build/default/production/newmainXC16.o
 
 .debug_str        0x000000         0x6a
  *(.debug_str)
@@ -262,10 +264,10 @@ __FICD
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x51
+                  0x000000         0x5e
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x51 build/default/production/newmainXC16.o
+                  0x000000         0x5e build/default/production/newmainXC16.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -722,23 +724,23 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/production/PIC24F16KL401_eeprom_tempSensor.production.elf elf32-pic30)
-LOAD /CW/_FGS¨Óž
-LOAD /CW/_FBS°ãž
+LOAD /CW/_FGS¸ø¥
+LOAD /CW/_FBSÀ¦
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000018        0x16c
+                  0x000018        0x168
  .debug_pubtypes
-                  0x000018        0x16c build/default/production/newmainXC16.o
+                  0x000018        0x168 build/default/production/newmainXC16.o
 
 __c30_signature
-                  0x000184         0x12
+                  0x000180         0x12
  __c30_signature
-                  0x000184          0x6 build/default/production/newmainXC16.o
+                  0x000180          0x6 build/default/production/newmainXC16.o
  __c30_signature
-                  0x00018a          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x000186          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000190          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x00018c          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
 .config_ICS       0xf8000e          0x2
  .config_ICS      0xf8000e          0x2 build/default/production/newmainXC16.o
@@ -756,10 +758,11 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/newmainXC16.o
 
-.text             0x0002ce         0x5e
- .text            0x0002ce         0x5e build/default/production/newmainXC16.o
+.text             0x0002ce         0x72
+ .text            0x0002ce         0x72 build/default/production/newmainXC16.o
                   0x0002ce                  _initPorts
                   0x0002e6                  _initPMD
-                  0x000304                  _initInterrupts
-                  0x000316                  _init
-                  0x000322                  _main
+                  0x000302                  _initInterrupts
+                  0x000314                  _init
+                  0x000320                  _selector
+                  0x000328                  _main

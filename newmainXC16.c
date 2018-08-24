@@ -59,9 +59,15 @@ void init(){
     initInterrupts();
 }
 
+enum selector{
+    sensing,
+    sending
+};
+
 //! Checks what state the "selector" is in. This will determine if the systems reads the temperature, or sends the data.
 uint8_t selector(){
     // TODO: add data for reading and sending the selector.
+    return sensing;
 }
 
 int main(void) {
@@ -71,9 +77,13 @@ int main(void) {
     
     // check selector
     switch (selector()){
+        case sensing:
+            break;
+        case sending:
+            break;
         default:
             break;
-    }
+    }   
     
     // if selector == sense
     
@@ -104,5 +114,8 @@ int main(void) {
                     // resend the data
     
             // wait
+    
+    while(1){}
+    
     return 0;
 }
