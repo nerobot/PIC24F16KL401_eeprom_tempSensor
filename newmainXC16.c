@@ -105,16 +105,21 @@ int main(void) {
     if (sel == sensing){                
     
         // wake up - nothing to be done.
-
-        // read the current time                        
-
-        // read the current temperature
         _SSP1MD = 0;
         i2cInit();
-        while(!initMCP()){}
+        
+        // read the current time      
+        getDateTime();   
+        data.hour = getHour();
+        data.minute = getMinute();
+        data.second = getSecond();
+
+        // read the current temperature
+        mcpWake();
         __delay_ms(1000);
         data.temp = readTemp();
-
+        mcpShutdown();
+        
         // store the data in the eeprom
 
         // sleep for one minute until RTC interrupt (or just delay for now).

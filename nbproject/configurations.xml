@@ -8,6 +8,7 @@
       <itemPath>i2c1.h</itemPath>
       <itemPath>mcp9808.h</itemPath>
       <itemPath>PIC24F16KL401.h</itemPath>
+      <itemPath>PCF8563.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +20,7 @@
       <itemPath>newmainXC16.c</itemPath>
       <itemPath>i2c1.c</itemPath>
       <itemPath>mcp9808.c</itemPath>
+      <itemPath>PCF8563.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
